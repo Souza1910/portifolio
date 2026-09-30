@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==========================================
-    // 1. MODO ESCURO / CLARO (Isolado)
-    // ==========================================
+
     const themeToggleBtn = document.getElementById('theme-toggle');
     
     if (themeToggleBtn) {
@@ -32,9 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==========================================
-    // 2. TESTE DE CONEXÃO COM A API
-    // ==========================================
+
     async function testarConexaoAPI() {
         try {
             const response = await fetch('https://portifolio-soib.onrender.com/api/status');
@@ -49,9 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     testarConexaoAPI();
 
-    // ==========================================
-    // 3. FORMULÁRIO DE CONTATO
-    // ==========================================
+
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
