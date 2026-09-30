@@ -109,14 +109,19 @@
 
     <!-- Seção Contato -->
     <section id="contato" class="section">
-        <div class="container">
-            <div class="contact-box">
-                <h2 class="section-title">Vamos conversar?</h2>
-                <p>Estou disponível para novos projetos, colaborações ou oportunidades de trabalho.</p>
-                <a href="https://wa.me/5561994121122" class="btn btn-primary">Enviar Mensagem</a>
-            </div>
+    <div class="container">
+        <div class="contact-box">
+            <h2 class="section-title">Vamos conversar?</h2>
+            <form id="contact-form" style="display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto;">
+                <input type="text" id="nome" placeholder="Seu Nome" required style="padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-main);">
+                <input type="email" id="email" placeholder="Seu E-mail" required style="padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-main);">
+                <textarea id="mensagem" placeholder="Sua Mensagem" rows="4" required style="padding: 10px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-primary); color: var(--text-main);"></textarea>
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+            <p id="form-response" style="margin-top: 15px; font-weight: 500;"></p>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Rodapé -->
     <footer class="footer">
