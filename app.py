@@ -1,13 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-# Inicializa o aplicativo Flask
 app = Flask(__name__)
 
-# Habilita o CORS para permitir que o navegador/site acesse esta API
-CORS(app)
+# Permite requisições de qualquer origem (inclusive do GitHub Pages)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
-# 1. Rota de teste para verificar se a API está online
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({"mensagem": "API do Portfólio a funcionar!"})
+
 @app.route('/api/status', methods=['GET'])
 def status():
     return jsonify({
@@ -15,9 +17,12 @@ def status():
         "mensagem": "API em Python conectada com sucesso ao portfólio!"
     })
 
-# 2. Rota para receber mensagens do formulário de contato (exemplo)
-@app.route('/api/contato', methods=['POST'])
+@app.route('/api/contato', methods=['POST', 'OPTIONS'])
 def receber_contato():
+    # Tratamento para requisição prévia (preflight OPTIONS)
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'ok'}), 200
+
     dados = request.get_json()
     
     nome = dados.get('nome', 'Anônimo')
@@ -26,19 +31,10 @@ def receber_contato():
 
     print(f"Nova mensagem recebida de {nome} ({email}): {mensagem}")
 
-    # Retorna uma resposta de sucesso para o JavaScript do site
     return jsonify({
         "sucesso": True,
         "mensagem": "Mensagem recebida com sucesso no servidor Python!"
     }), 200
 
-# Executa o servidor na porta 5000
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-    # Rota para a página inicial da API
-@app.route('/', methods=['GET'])
-def home():
-    return jsonify({
-        "mensagem": "Bem-vindo à API do Portfólio!"
-    })
